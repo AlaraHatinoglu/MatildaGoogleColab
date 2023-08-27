@@ -1,0 +1,25 @@
+//Works on google colab, shared here for achieving purposes
+
+!sudo apt install tesseract-ocr
+
+!pip install pytesseract
+
+import pytesseract
+import shutil
+import os
+import random
+try:
+  from PIL import Image
+except  ImportError:
+  import Image
+
+from google.colab import files
+uploaded = files.upload()
+
+ExtractedText = pytesseract.image_to_string(Image.open('Screenshot 2023-08-22 231753.png'))
+
+print(ExtractedText)
+
+print(ExtractedText.lower())
+
+print(ExtractedText.lower().replace('/', '').replace('-', ',').replace('water', '').replace('eau','').replace(':',',').replace(' ,',',').replace('\n',''))
